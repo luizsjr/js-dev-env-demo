@@ -6,16 +6,16 @@
   "license": "MIT",
   "scripts": {
     "prestart": "babel-node ./buildScripts/startMessage",
-    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:mocha:watch",
+    "security-check": "nsp check",
     "open:src": "babel-node ./buildScripts/srcServer",
+    "test": "npm-run-all --parallel lint test:mocha",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
-    "security-check": "nsp check",
-    "localTunnel": "lt --port 8080 --subdomain luizsjr",
-    "share": "npm-run-all --parallel start localTunnel",
-    "test": "npm-run-all --parallel lint test:mocha",
     "test:mocha": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch --watch-extensions html"
+    "test:mocha:watch": "npm run test:mocha -- --watch --watch-extensions html",
+    "share": "npm-run-all --parallel start localTunnel",
+    "localTunnel": "lt --port 8080 --subdomain luizsjr"
   },
   "dependencies": {
     "whatwg-fetch": "1.0.0"
