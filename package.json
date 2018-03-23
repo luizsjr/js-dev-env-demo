@@ -13,7 +13,8 @@
     "security-check": "nsp check",
     "localTunnel": "lt --port 8080 --subdomain luizsjr",
     "share": "npm-run-all --parallel start localTunnel",
-    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
+    "test": "npm-run-all --parallel lint test:mocha",
+    "test:mocha": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch --watch-extensions html"
   },
   "dependencies": {
