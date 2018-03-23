@@ -6,10 +6,12 @@
   "license": "MIT",
   "scripts": {
     "prestart": "babel-node ./buildScripts/startMessage",
-    "start": "npm-run-all --parallel security-check open:src",
-    "open:src" : "babel-node ./buildScripts/srcServer",
+    "start": "npm-run-all --parallel security-check open:src lint:watch",
+    "open:src": "babel-node ./buildScripts/srcServer",
+    "lint": "esw webpack.config.* src buildScripts --color",
+    "lint:watch": "npm run lint -- --watch",
     "security-check": "nsp check",
-    "localTunnel" : "lt --port 8080 --subdomain luizsjr",
+    "localTunnel": "lt --port 8080 --subdomain luizsjr",
     "share": "npm-run-all --parallel start localTunnel"
   },
   "dependencies": {
