@@ -5,9 +5,9 @@
   "author": "Cory House",
   "license": "MIT",
   "scripts": {
-    "prestart": "node ./buildScripts/startMessage",
+    "prestart": "babel-node ./buildScripts/startMessage",
     "start": "npm-run-all --parallel security-check open:src",
-    "open:src" : "node ./buildScripts/srcServer",
+    "open:src" : "babel-node ./buildScripts/srcServer",
     "security-check": "nsp check",
     "localTunnel" : "lt --port 8080 --subdomain luizsjr",
     "share": "npm-run-all --parallel start localTunnel"
