@@ -1,6 +1,6 @@
 import './index.css';
 import numeral from 'numeral';
-import {getUsers} from './api/userApi'
+import {getUsers, deleteUser} from './api/userApi'
 
 // debugger;
 const courseValue = numeral(1000).format('$0,0.00');
@@ -21,5 +21,19 @@ getUsers().then(result => {
       </tr>
     `
     global.document.getElementById('users').innerHTML = usersBody;
+
+    const deleteLinks = global.document.getElementsByClassName('deleteUser');
+
+    // Must use array.from to create a real affray from a DOM collection
+    // getElementsByClassName only returns an ""array like" object
+    Array.from(deleteLinks, link => {
+      link.onclick = event => {
+        const element = event.target;
+        event.preventDefault();
+        deleteUser(element.attributes["data-id"].value);
+        const row = element.parentNode.parentNode;
+        row.parentNode.removeChild(row);
+      };
+    });
   });
 });

@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "prestart": "babel-node ./buildScripts/startMessage",
-    "start": "npm-run-all --parallel security-check open:src lint:watch test:mocha:watch",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:mocha:watch start-mockapi",
     "security-check": "nsp check",
     "open:src": "babel-node ./buildScripts/srcServer",
     "test": "npm-run-all --parallel lint test:mocha",
@@ -15,7 +15,10 @@
     "test:mocha": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
     "test:mocha:watch": "npm run test:mocha -- --watch --watch-extensions html",
     "share": "npm-run-all --parallel start localTunnel",
-    "localTunnel": "lt --port 8080 --subdomain luizsjr"
+    "localTunnel": "lt --port 8080 --subdomain luizsjr",
+    "generate-mock-data": "babel-node buildScripts/generateMockData",
+    "prestart-mockapi": "npm run generate-mock-data",
+    "start-mockapi": "json-server --watch src/api/db.json --port 8081"
   },
   "dependencies": {
     "whatwg-fetch": "1.0.0"
