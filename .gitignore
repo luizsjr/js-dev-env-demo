@@ -62,3 +62,6 @@ typings/
 
 # Mock Generated Data
 src/api/db.json
+
+# Production dist folder
+dist

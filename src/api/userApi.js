@@ -1,5 +1,5 @@
 
-// import 'whatwg-fetch';// With the next import the polyfill for fetch is always used
+import 'whatwg-fetch'; // With this import the polyfill for fetch is always used
 import getBaseUrl from './baseUrl';
 
 const baseUrl = getBaseUrl();
