@@ -1,5 +1,5 @@
 export default function getBaseUrl() {
-  return getQueryStringParameterByName('useMockApi') ? "http://localhost:8081/" : "/";
+  return getQueryStringParameterByName('useMockApi') ? "http://localhost:8081/" : "https://ancient-crag-16227.herokuapp.com/";
 }
 
 function getQueryStringParameterByName(name, url) {
